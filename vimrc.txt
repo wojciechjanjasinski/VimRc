@@ -8,13 +8,19 @@ set showmatch
 nmap <F2> :Explore<CR>
 nmap <F3> :bd<CR>
 nmap <C-u> "+yy
-nmap <C-k> :w<CR>
 nmap <C-p> "+p
 nmap <C-y> :%y+<CR>
 map ; :Files<CR>
 map z/ <Plug>(incsearch-easymotion-/)
 map z? <Plug>(incsearch-easymotion-?)
 map zg/ <Plug>(incsearch-easymotion-stay)
+map ` :w<CR>
+" Use ctrl-[hjkl] to select the active split!
+nmap <silent> <c-k> :wincmd k<CR>
+nmap <silent> <c-j> :wincmd j<CR>
+nmap <silent> <c-h> :wincmd h<CR>
+nmap <silent> <c-l> :wincmd l<CR>
+nmap <silent> <c-n> :wincmd n<CR>
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'easymotion/vim-easymotion'
