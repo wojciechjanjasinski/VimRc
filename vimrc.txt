@@ -5,22 +5,28 @@ set autoindent
 set expandtab
 set softtabstop=4
 set showmatch
+:set encoding=utf-8
+:set fileencoding=utf-8
 nmap <F2> :Explore<CR>
 nmap <F3> :bd<CR>
-nmap <C-u> "+yy
-nmap <C-p> "+p
-nmap <C-y> :%y+<CR>
+nnoremap <F4> :NERDTreeToggle C:\Users\HARDPC\Sync\Ogolny <CR>
+nmap `u "+yy
+nmap `p "+p
+nmap `y :%y+<CR>
 map ; :Files<CR>
 map z/ <Plug>(incsearch-easymotion-/)
 map z? <Plug>(incsearch-easymotion-?)
 map zg/ <Plug>(incsearch-easymotion-stay)
-map ` :w<CR>
-" Use ctrl-[hjkl] to select the active split!
-nmap <silent> <c-k> :wincmd k<CR>
-nmap <silent> <c-j> :wincmd j<CR>
-nmap <silent> <c-h> :wincmd h<CR>
-nmap <silent> <c-l> :wincmd l<CR>
-nmap <silent> <c-n> :wincmd n<CR>
+"map <C-k> :w<CR>
+"map `s :w<CR>
+map ZS :w<CR>
+nmap `h <C-w>h
+nmap `j <C-w>j
+nmap `k <C-w>k
+nmap `l <C-w>l
+nmap `n <C-w>n
+nmap `\ :vne<CR>
+nmap `t :tabnew<CR>
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'easymotion/vim-easymotion'
@@ -30,6 +36,7 @@ Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 call plug#end()
+
 
 " Komantarz
 " Jak instalować dodatki za pomocą Pluga?
