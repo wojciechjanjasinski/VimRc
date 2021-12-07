@@ -30,3 +30,12 @@ Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 call plug#end()
+
+" Komantarz
+" Jak instalować dodatki za pomocą Pluga?
+" Dodaję odpowiednie linię
+" Zapisuje plik z wprowadzonymi zmianami
+" :source % (wewnątrz pliku vimrc)
+" :PlugInstall
+" Enter
+" gotowe :)
