@@ -1,4 +1,4 @@
-set number
+:set nu rnu
 syntax on
 set tabstop=4
 set autoindent
@@ -7,12 +7,14 @@ set softtabstop=4
 set showmatch
 :set encoding=utf-8
 :set fileencoding=utf-8
+let g:netrw_liststyle = 3
 nmap <F2> :Explore<CR>
 nmap <F3> :bd<CR>
 nnoremap <F4> :NERDTreeToggle C:\Users\HARDPC\Sync\Ogolny <CR>
 nmap `u "+yy
 nmap `p "+p
 nmap `y :%y+<CR>
+map ZH :History<CR>
 map ; :Files<CR>
 map z/ <Plug>(incsearch-easymotion-/)
 map z? <Plug>(incsearch-easymotion-?)
