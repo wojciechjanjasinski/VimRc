@@ -1,5 +1,6 @@
 :set nu rnu
 syntax on
+:set nrformats+=alpha
 set tabstop=4
 set autoindent
 set expandtab
@@ -15,13 +16,16 @@ nmap `u "+yy
 nmap `p "+p
 nmap `y :%y+<CR>
 map ZH :History<CR>
-map ; :Files<CR>
+map ZF :Files<CR>
+imap ;; <Esc>
+noremap <silent> <leader>c :%s/^/\=line(".") . ". "/g <CR>
 map z/ <Plug>(incsearch-easymotion-/)
 map z? <Plug>(incsearch-easymotion-?)
 map zg/ <Plug>(incsearch-easymotion-stay)
 "map <C-k> :w<CR>
 "map `s :w<CR>
 map ZS :w<CR>
+map z; :w<CR>
 nmap `h <C-w>h
 nmap `j <C-w>j
 nmap `k <C-w>k
@@ -29,6 +33,7 @@ nmap `l <C-w>l
 nmap `n <C-w>n
 nmap `\ :vne<CR>
 nmap `t :tabnew<CR>
+nnoremap Y y$
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'easymotion/vim-easymotion'
@@ -37,7 +42,31 @@ Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'vim-pandoc/vim-markdownfootnotes'
+Plug 'tpope/vim-surround'
 call plug#end()
+
+"Toggle relative numbers.
+set number relativenumber
+
+let s:relative =1
+function! ToggleRelative()
+    if s:relative  == 0
+        let s:relative = 1
+        set nonumber
+        set number relativenumber
+
+    else
+        let s:relative = 0
+        set nonumber
+        set number norelativenumber
+
+    endif
+endfunction
+noremap <silent> <leader>n :call ToggleRelative()<CR>
+
+":%s/^/\=line(".") . ". "/g
+
 
 
 " Komantarz
