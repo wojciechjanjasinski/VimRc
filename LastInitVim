@@ -1,0 +1,141 @@
+" A oto mój pilik vimrc. Postanowiłem napisać komentarze do potrzebnych
+" funkcji i uporządkować plik, bo narobiłem bałaganu.
+" Układ pliku wygląda następująco:
+" funkcja
+" opis w komentarzu
+:set nu rnu
+" ustaw relative numbers tj. numery względnę przyjmujące za numer 0 aktualną
+" linię
+syntax on
+" Ta funkcja powzala pokazywać różne czcionki i kolory w terminalu
+:set nrformats+=alpha
+" Ustaw możliwość inkrementowania a→z przydatne do budowania list
+set tabstop=4
+" Ustawienia szerokości tabulatora na 4
+set autoindent
+" Ustawienie pozwalające na automatyczne wcinanie linii
+set expandtab
+" Przekrztałca tabulatory na spacje
+set softtabstop=4
+" Ustawienia szerokości tabulatora na 4 we wcięciu
+set showmatch
+" Podświetl pasujące nawiasy pokazuje ich początek i koniec
+:set encoding=utf-8
+:set fileencoding=utf-8
+" ↑2 Ustawia domyślne kodowanie zapisu pliku i edytora w ogóle na UTF-8
+set nohlsearch
+" powyższe ustawienie wyłącza podświetlenie wyników wyszukiwania
+let g:netrw_liststyle = 3
+" Wymusza na netrw widok plików w styulu drzewa
+nnoremap <F2> :Explore<CR>
+" Przypisuje funkcję otwarcia netrw do klawisza F2
+nnoremap <F3> :bd<CR>
+" Przypisuje funkcję wyczyść zapisany/widziany ekran do klawisza F3
+nnoremap <F4> :NERDTreeToggle C:\Users\HARDPC\Sync\Ogolny <CR>
+" Otwórz NERDTree w konkretnym folderze
+nnoremap `u "+yy
+" Skrót do kopiowania jednej linii tekstu do schowka systemowego
+nnoremap `p "+p
+" Skrót do wklejenia zawartości schowka systemowego
+nnoremap `y :%y+<CR>
+" Skrót do kopiowania całego tekstu do schowka systemowego
+nnoremap ZH :History<CR> 
+" Otwórz FZF ostatnio używane pliki
+nnoremap ZF :Files C:\Users\HARDPC<CR> 
+" Otwórz FZF
+inoremap '' <Esc>
+" Opuść insert mode bez zapisywania pliku
+inoremap ;; <Esc>:w<CR>
+" Opuść insert mode i zapisz plik w normal mode
+nnoremap <silent> <leader>c :%s/^/\=line(".") . ". "/g <CR>
+" Ponumeruj wszystkie linie pliku i wstaw kropki za numery i wstaw przed tekst
+nmap <Tab> \\
+" Skrót do Easymotion zamiast dwóch kliknięć jedno za dwa
+map z/ <Plug>(incsearch-easymotion-/)
+map z? <Plug>(incsearch-easymotion-?)
+map zg/ <Plug>(incsearch-easymotion-stay)
+" Polecenia do wyszukiwania z easymotion
+":call search ('\.') ta instrukcja pozwala znaleźć kropkę w tekście vima (nie mówię o easymotion od haya14busy)
+nnoremap <silent> <leader>eol :g/./normal 2o <CR>
+" Wstaw na koniec każdej linii pliku znak „\” i usuń w ostanej. Potrzebny do
+" zaznaczania końca wiersza w plikach markdown, aby inne edytory nie naruszały
+" wymyślonej przeze mnie struktury
+nnoremap <silent> <leader>tak :s/nie/tak/gc <CR>
+" Polecenie zamiany słowa „nie” na „tak” tam, gdzie wyrażę na to zgodę
+nnoremap ZS :w<CR>
+nnoremap z; :w<CR>
+nnoremap gy :w<CR>
+" Skróty służące do zapisywania pliku w normal mode
+nnoremap `\ :vne<CR>
+" Skrót otwórz nowy pionowy pusty split na lewo od okna z aktywnym kursorem
+nnoremap `t :tabnew<CR>
+" Skrót do otwarcia nowej pustej zakładki
+nnoremap Y y$
+" Skrót do skopiowania wszystkiego od aktualnej pozycji karetki do końca linii
+nnoremap <silent> <leader>o jo<Esc>zta
+" Skrót do Kosmasa wykonujący następujące polecenia:
+" 1. Przesuń karetkę jedną linię w dół.
+" 2. Otwórz nową linię poniżej aktualnej.
+" 3. Wróć do trybu normal.
+" 4. Ustaw aktualną linię na samą górę edytora.
+" 5. Przejdź do insert mode za znakiem.
+" Dwa klawisze zamiast sześciu.
+
+nnoremap <silent> <leader>k 14j0ztjjww
+" Skrót do Kosmasa wykonuje następujące polecenia:
+" 1. Przesuń karetkę o 14 linii niżej.
+" 2. Dalej przemieść ją na początek linii.
+" 3. Ustaw tekst u góry ekranu.
+" 4. Przesuń o dwa w dół kartkę.
+" 5. Ustaw karetkę na początku drugiego wyrazu.
+
+call plug#begin('~/.vim/plugged')
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'easymotion/vim-easymotion'
+Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/incsearch-fuzzy.vim'
+Plug 'haya14busa/incsearch-easymotion.vim'
+"Plug 'haya14busa/is.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-surround'
+Plug 'junegunn/vim-peekaboo'
+Plug 'jikkujose/vim-visincr'
+call plug#end()
+
+" NERDTree i wszystko jasne
+" Vim easymotion
+" Wyszukiwanie inkrementalne easymotion
+" Uruchum Fuzzy Finder
+" Vim Surround łatwiejsze posługiwanie się nawiasami
+" Peekaboo pokaż zawartość rejestrów/schowków z tekstem
+" Wstaw listę liczb w tym z rzymskimi cyframi
+
+"Toggle relative numbers.
+set number relativenumber
+" Ustaw numery relatywne bądź zwyczajne
+
+let s:relative =1
+function! ToggleRelative()
+    if s:relative  == 0
+        let s:relative = 1
+        set nonumber
+        set number relativenumber
+
+    else
+        let s:relative = 0
+        set nonumber
+        set number norelativenumber
+
+    endif
+endfunction
+nnoremap <silent> <leader>n :call ToggleRelative()<CR>
+
+" Komantarz
+" Jak instalować dodatki za pomocą Pluga?
+" Dodaję odpowiednie linię
+" Zapisuje plik z wprowadzonymi zmianami
+" :source % (wewnątrz pliku vimrc)
+" :PlugInstall
+" Enter
+" gotowe :)
